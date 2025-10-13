@@ -1,0 +1,46 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #FF6F00; /* Un naranja vibrante y deportivo */
+  --dark-color: #1a1a1a;
+  --light-color: #ffffff;
+  --gray-color: #333333;
+  --background-color: #121212;
+  --font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color) !important;
+  color: var(--light-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--light-color);
+}
+
+.bg-dark {
+  background-color: var(--dark-color) !important;
+}
+
+.text-muted {
+  color: #aaa !important;
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
