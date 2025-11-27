@@ -27,14 +27,14 @@
               <button 
                 class="btn btn-sm" 
                 :class="sizeSystem === 'US' ? 'btn-primary' : 'btn-outline-secondary'"
-                @click="sizeSystem = 'US'"
+                @click="cartStore.setSizeSystem('US')"
               >
                 US
               </button>
               <button 
                 class="btn btn-sm" 
-                :class="sizeSystem === 'MEX' ? 'btn-primary' : 'btn-outline-secondary'"
-                @click="sizeSystem = 'MEX'"
+                :class="sizeSystem === 'MX' ? 'btn-primary' : 'btn-outline-secondary'"
+                @click="cartStore.setSizeSystem('MX')"
               >
                 MEX
               </button>
@@ -57,8 +57,8 @@
                             :value="item.selectedSize"
                             @change="updateSize(item, $event)"
                           >
-                            <option v-for="size in getAvailableSizes(item.gender)" :key="size.US" :value="size.US">
-                              {{ sizeSystem === 'US' ? size.US : size.CM }} ({{ sizeSystem }})
+                            <option v-for="size in getAvailableSizes(item.gender)" :key="size.US" :value="sizeSystem === 'US' ? `US ${size.US}` : `MX ${size.CM}`">
+                              {{ sizeSystem === 'US' ? `US ${size.US}` : `MX ${size.CM}` }}
                             </option>
                           </select>
                         </div>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="text-end">
                       <span class="fw-bold item-price">
-                        {{ currencyStore.selectedCurrency }} {{ (currencyStore.convertedPrice(item.unitPrice) * item.quantity).toFixed(2) }}
+                        {{ currencyStore.selectedCurrency }} {{ (currencyStore.convertedPrice(item.price) * item.quantity).toFixed(2) }}
                       </span>
                       <button class="btn btn-sm btn-danger ms-3" @click="cartStore.removeFromCart(item.id, item.selectedSize)">
                          <i class="bi bi-trash"></i>
@@ -134,11 +134,6 @@ const cartStore = useCartStore()
 const currencyStore = useCurrencyStore()
 const checkoutComplete = ref(false) // 🌟 NUEVO: Controla la vista de éxito
 
-const sizeSystem = computed({
-  get: () => cartStore.sizeSystem,
-  set: (val) => cartStore.setSizeSystem(val)
-})
-
 const getAvailableSizes = (gender) => {
   const sizeCategory = sizesData.find(cat => cat.category === gender);
   return sizeCategory ? sizeCategory.table : [];
@@ -148,6 +143,9 @@ const updateSize = (item, event) => {
   const newSize = event.target.value;
   cartStore.updateItemSize(item.id, item.selectedSize, newSize);
 }
+
+// 🌟 CORREGIDO: Usar el sizeSystem del store directamente 🌟
+const sizeSystem = computed(() => cartStore.sizeSystem);
 
 // 🌟 MEJORADO: Cambia el estado para mostrar el mensaje de éxito en lugar de un alert 🌟
 const handleCheckout = () => {
