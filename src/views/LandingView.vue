@@ -13,20 +13,32 @@
         <span class="word word-4">DEFINE</span>
       </h1>
       <p class="lead my-4 fade-in">Hechas para el movimiento. Diseñadas para ti.</p>
-      <router-link to="/tienda" class="btn btn-sporty btn-lg pulse">ENTRAR A LA TIENDA</router-link>
+      <button @click="goToStore" class="btn btn-sporty btn-lg pulse">ENTRAR A LA TIENDA</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+// 🌟 Importamos nextTick 🌟
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue' 
+import { useRouter } from 'vue-router' 
 
 const mouseX = ref(0)
 const mouseY = ref(0)
+const router = useRouter() // Inicializamos el router
 
 const handleMouseMove = (event) => {
   mouseX.value = event.clientX - window.innerWidth / 2
   mouseY.value = event.clientY - window.innerHeight / 2
+}
+
+// 🌟 SOLUCIÓN DEFINITIVA: Usar nextTick y navegación por nombre 🌟
+const goToStore = () => {
+    // nextTick asegura que cualquier cambio en el DOM pendiente se procese antes de navegar.
+    nextTick(() => {
+        // Navegamos usando el nombre de la ruta ('home') para una resolución más estable.
+        router.push({ name: 'home' }); 
+    });
 }
 
 onMounted(() => {
@@ -65,7 +77,7 @@ const contentStyle = computed(() => ({
 .word-1 { animation: slideInUp 0.6s 0.2s forwards ease-out; }
 .word-2 { animation: slideInUp 0.6s 0.4s forwards ease-out; }
 .word-3 { animation: slideInUp 0.6s 0.6s forwards ease-out; }
-.word-4 { animation: slideInUp 0.6s 0.8s forwards ease-out; color: var(--primary-color); }
+.word-4 { animation: slideInUp 0.8s 0.8s forwards ease-out; color: var(--primary-color); }
 
 .fade-in {
   opacity: 0;

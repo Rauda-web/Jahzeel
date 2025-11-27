@@ -2,9 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom fixed-top">
     <div class="container">
       <router-link class="navbar-brand" to="/tienda">SPORT·FLOW</router-link>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
@@ -17,7 +19,13 @@
             <router-link class="nav-link" to="/contact">Contacto</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        
+        <ul class="navbar-nav align-items-center">
+          
+          <li class="nav-item me-3">
+              <CurrencyDropdown /> 
+          </li>
+          
           <li class="nav-item">
             <router-link class="nav-link cart-link" to="/cart">
               <i class="bi bi-cart3"></i>
@@ -32,6 +40,7 @@
 
 <script setup>
 import { useCartStore } from '../store'
+import CurrencyDropdown from './CurrencyDropdown.vue' 
 
 const cartStore = useCartStore()
 </script>
@@ -43,6 +52,7 @@ const cartStore = useCartStore()
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
   transition: all 0.3s ease;
+  z-index: 1040; 
 }
 
 .navbar-brand {
@@ -50,6 +60,11 @@ const cartStore = useCartStore()
   font-size: 1.8rem;
   letter-spacing: 0.5px;
   color: #222;
+}
+
+.currency-item {
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem; 
 }
 
 .nav-link {
@@ -65,29 +80,30 @@ const cartStore = useCartStore()
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
   height: 3px;
   background: linear-gradient(45deg, #ff0077, #ff6600);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 2px;
+  transition: width 0.4s ease;
 }
 
 .nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
+.router-link-exact-active::after {
+  width: 100%;
 }
 
-.nav-link.active {
- color: #222 !important;
+.router-link-exact-active {
+  color: #000 !important;
 }
 
 .cart-link {
   font-size: 1.5rem;
   position: relative;
   transition: transform 0.3s ease;
+  padding: 0.5rem 0.5rem !important; 
 }
 
 .cart-link:hover {

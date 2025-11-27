@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: '/tienda',
-    name: 'home',
+    name: 'home', // CLAVE: Usado para la navegación del botón "ENTRAR A LA TIENDA"
     component: HomeView
   },
   {
