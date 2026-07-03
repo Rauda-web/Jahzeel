@@ -19,6 +19,10 @@
                 <label for="phone" class="form-label">Teléfono</label>
                 <input type="tel" class="form-control" id="phone" v-model="form.phone">
               </div>
+              <div class="mb-4">
+                <label for="message" class="form-label">Mensaje</label>
+                <textarea class="form-control" id="message" v-model="form.message" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+              </div>
               <div class="d-grid mt-4">
                 <button type="submit" class="btn btn-sporty btn-lg">ENVIAR MENSAJE</button>
               </div>
@@ -36,12 +40,13 @@ import { ref } from 'vue'
 const form = ref({
   name: '',
   email: '',
-  phone: ''
+  phone: '',
+  message: ''
 })
 
 const handleSubmit = () => {
-  alert(`Gracias por tu mensaje, ${form.value.name}! Nos pondremos en marcha para contactarte.`)
-  form.value = { name: '', email: '', phone: '' }
+  alert(`¡Gracias por tu mensaje, ${form.value.name}! Nos pondremos en contacto pronto.`)
+  form.value = { name: '', email: '', phone: '', message: '' }
 }
 </script>
 

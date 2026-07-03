@@ -1,19 +1,33 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Bebas+Neue&display=swap');
 
 :root {
-  --primary-color: #FF6F00; /* Un naranja vibrante y deportivo */
+  --primary-color: #FF6F00;
+  --primary-glow: rgba(255, 111, 0, 0.4);
+  --secondary-color: #ff0077;
   --dark-color: #1a1a1a;
+  --dark-card: #1e1e24;
   --light-color: #ffffff;
-  --gray-color: #333333;
-  --background-color: #121212;
-  --font-family: 'Poppins', sans-serif;
+  --gray-color: #2a2a35;
+  --gray-light: #3a3a4a;
+  --background-color: #111118;
+  --font-family: 'Inter', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --gradient-brand: linear-gradient(135deg, #FF6F00, #ff0077);
+  --gradient-dark: linear-gradient(135deg, #1e1e24, #2a2a35);
+  --border-subtle: rgba(255,255,255,0.08);
+  --shadow-card: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-family);
   background-color: var(--background-color) !important;
   color: var(--light-color);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,19 +40,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-muted {
-  color: #aaa !important;
+  color: #888 !important;
 }
 
-/* Animación de entrada */
+/* Animaciones globales */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .fade-in-up {

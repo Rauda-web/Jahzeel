@@ -30,7 +30,7 @@ const filteredProducts = computed(() => {
 
 <style scoped>
 .category-view {
-  padding-top: 4rem;
+  padding-top: 8rem;
   padding-bottom: 4rem;
 }
 
