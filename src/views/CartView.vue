@@ -1,30 +1,34 @@
 <template>
-  <div class="cart-view fade-in-up">
-    <h1 class="mb-4">TU EQUIPAMIENTO</h1>
+  <div class="cart-view container fade-in-up">
+    <h1 class="mb-4 text-dark-contrast">TU EQUIPAMIENTO</h1>
 
     <div v-if="cartStore.cartItemCount === 0" class="alert alert-info text-center">
       Aún no tienes nada en tu carrito. ¡Es hora de equiparte!
     </div>
-
+    
     <div v-else>
       <div class="row">
-        <!-- Cart Items -->
         <div class="col-lg-8">
           <div class="card items-card mb-4">
             <div class="card-body">
               <ul class="list-group list-group-flush">
-                <li v-for="item in cartStore.cartItems" :key="item.id" class="list-group-item">
+                <li v-for="item in cartStore.items" :key="item.id + '-' + item.selectedSize" class="list-group-item">
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                       <img :src="item.image" :alt="item.name" class="me-3 item-image">
                       <div>
                         <h6 class="my-0">{{ item.name }}</h6>
+                        <small class="text-muted d-block">Talla: {{ item.selectedSize }}</small>
                         <small class="text-muted">Cantidad: {{ item.quantity }}</small>
                       </div>
                     </div>
                     <div class="text-end">
-                      <span class="fw-bold item-price">${{ (item.price * item.quantity).toFixed(2) }}</span>
-                      <button class="btn btn-sm btn-danger ms-3" @click="cartStore.removeFromCart(item.id)"><i class="bi bi-trash"></i></button>
+                      <span class="fw-bold item-price">
+                        {{ item.selectedCurrency }} {{ (item.unitPrice * item.quantity).toFixed(2) }}
+                      </span>
+                      <button class="btn btn-sm btn-danger ms-3" @click="cartStore.removeFromCart(item.id, item.selectedSize)">
+                         <i class="bi bi-trash"></i>
+                      </button>
                     </div>
                   </div>
                 </li>
@@ -33,7 +37,6 @@
           </div>
         </div>
 
-        <!-- Summary and Shipping -->
         <div class="col-lg-4">
           <div class="card summary-card">
             <div class="card-body">
@@ -41,7 +44,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Subtotal</span>
-                  <strong>${{ cartStore.cartTotal }}</strong>
+                  <strong>{{ selectedCurrency }} {{ cartStore.cartTotal.toFixed(2) }}</strong>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Envío</span>
@@ -49,7 +52,7 @@
                 </li>
                 <li class="list-group-item total-item d-flex justify-content-between">
                   <span>Total</span>
-                  <strong>${{ cartStore.cartTotal }}</strong>
+                  <strong>{{ selectedCurrency }} {{ cartStore.cartTotal.toFixed(2) }}</strong>
                 </li>
               </ul>
               
@@ -79,9 +82,16 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useCartStore } from '../store'
 
 const cartStore = useCartStore()
+
+// Propiedad computada para inferir la moneda del primer artículo o usar USD como fallback.
+const selectedCurrency = computed(() => {
+    // Usamos la moneda del primer artículo para mostrar el símbolo correcto en el resumen 
+    return cartStore.items.length > 0 ? cartStore.items[0].selectedCurrency : 'USD';
+});
 
 const handleCheckout = () => {
   alert('¡Gracias por tu compra! Tu pedido está en camino.')
@@ -90,6 +100,20 @@ const handleCheckout = () => {
 </script>
 
 <style scoped>
+/* 🌟 CORRECCIÓN CRÍTICA PARA PANTALLA NEGRA Y CONTRASTE 🌟 */
+.cart-view {
+    /* 1. Padding superior para que el contenido aparezca debajo del fixed-top navbar */
+    padding-top: 8rem; 
+    padding-bottom: 4rem;
+    /* 2. Fondo claro forzado para que las tarjetas oscuras resalten (Solución de fondo negro) */
+    background-color: #f8f9fa !important; 
+    min-height: 100vh;
+}
+/* 3. Asegura que el texto principal tenga contraste con el fondo claro */
+.text-dark-contrast {
+    color: var(--dark-color) !important;
+}
+/* Estilos del contenido (se mantienen igual, pero ahora son visibles) */
 .items-card, .summary-card, .list-group-item, .alert-info {
   background-color: var(--dark-color);
   border-color: var(--gray-color);

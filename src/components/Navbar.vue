@@ -2,9 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom fixed-top">
     <div class="container">
       <router-link class="navbar-brand" to="/tienda">SPORT·FLOW</router-link>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
@@ -17,7 +19,13 @@
             <router-link class="nav-link" to="/contact">Contacto</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        
+        <ul class="navbar-nav align-items-center">
+          
+          <li class="nav-item currency-item me-3">
+              <CurrencyDropdown /> 
+          </li>
+          
           <li class="nav-item">
             <router-link class="nav-link cart-link" to="/cart">
               <i class="bi bi-cart3"></i>
@@ -32,6 +40,7 @@
 
 <script setup>
 import { useCartStore } from '../store'
+import CurrencyDropdown from './CurrencyDropdown.vue' 
 
 const cartStore = useCartStore()
 </script>
@@ -43,6 +52,9 @@ const cartStore = useCartStore()
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
   transition: all 0.3s ease;
+  /* 🌟 CLAVE: Aseguramos que la NavBar tenga un z-index alto pero que permita el desbordamiento 🌟 */
+  z-index: 1040; 
+  overflow: visible; /* Aseguramos que los dropdowns puedan salirse */
 }
 
 .navbar-brand {
@@ -50,6 +62,16 @@ const cartStore = useCartStore()
   font-size: 1.8rem;
   letter-spacing: 0.5px;
   color: #222;
+}
+
+.currency-item {
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem; 
+}
+
+/* 🌟 SOLUCIÓN ADICIONAL: Asegurar que la UL que contiene los items permita desbordamiento 🌟 */
+.navbar-nav {
+    overflow: visible !important;
 }
 
 .nav-link {
@@ -88,6 +110,7 @@ const cartStore = useCartStore()
   font-size: 1.5rem;
   position: relative;
   transition: transform 0.3s ease;
+  padding: 0.5rem 0.5rem !important; 
 }
 
 .cart-link:hover {
