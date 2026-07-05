@@ -128,4 +128,35 @@ const cartStore = useCartStore()
   padding: 0.3em 0.5em;
   border: 2px solid #fff;
 }
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+@media (max-width: 991px) {
+  .navbar-custom {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+  /* Menú colapsado */
+  .collapse.navbar-collapse {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    padding: 0.75rem 0;
+    margin-top: 0.5rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .nav-link {
+    margin: 0.1rem 0;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  .nav-link::after {
+    display: none;
+  }
+  .currency-item {
+    padding-left: 1rem;
+  }
+}
 </style>

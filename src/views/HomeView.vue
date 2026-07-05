@@ -285,4 +285,79 @@ onUnmounted(() => {
     transform: translateY(0);
   }
 }
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 3rem 0 4rem;
+    min-height: auto;
+  }
+  .shoe-display {
+    height: 260px;
+    max-width: 320px;
+    transform: rotate(-8deg);
+    margin: 2rem auto 0;
+  }
+  .image-content {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 2.6rem;
+    letter-spacing: -0.5px;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  .hero-section {
+    padding: 2rem 0 3rem;
+    text-align: center;
+  }
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .shoe-display {
+    height: 220px;
+    max-width: 280px;
+    transform: rotate(-5deg);
+    margin: 1.5rem auto 0;
+  }
+  .btn-explore {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+  }
+  .categories-section {
+    padding: 4rem 0 3rem;
+  }
+  .category-image-wrapper img {
+    height: 200px;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+  #products-grid {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .shoe-display {
+    height: 180px;
+    max-width: 240px;
+  }
+  .category-image-wrapper img {
+    height: 160px;
+  }
+}
 </style>

@@ -146,4 +146,40 @@ iframe {
   margin-bottom: 0;
   line-height: 1.5;
 }
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+@media (max-width: 767px) {
+  .location-view {
+    padding-top: 5rem;
+  }
+  .location-header {
+    padding: 2rem 1rem 2.5rem;
+    margin-bottom: -1rem;
+  }
+  .location-title {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+  .location-subtitle {
+    font-size: 0.95rem;
+  }
+  .map-wrapper iframe {
+    height: 300px;
+  }
+  .location-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-title {
+    font-size: 1.3rem;
+  }
+  .map-wrapper iframe {
+    height: 240px;
+  }
+}
 </style>

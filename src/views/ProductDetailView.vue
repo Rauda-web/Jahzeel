@@ -309,4 +309,81 @@ const buyNow = () => {
 .modal-fade-leave-to .guide-modal {
   transform: scale(0.92) translateY(20px);
 }
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+@media (max-width: 991px) {
+  .product-hero {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+  .info-panel {
+    padding: 2rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-hero {
+    padding-top: 5.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .product-name {
+    font-size: 1.8rem;
+  }
+  .price-main {
+    font-size: 1.9rem;
+  }
+  .info-panel {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+  .image-wrapper {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+  .product-img {
+    max-height: 280px;
+  }
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .size-btn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    min-width: auto;
+  }
+  .related-section {
+    padding: 3rem 0 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-name {
+    font-size: 1.5rem;
+  }
+  .price-main {
+    font-size: 1.7rem;
+  }
+  .info-panel {
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+  }
+  .product-img {
+    max-height: 220px;
+  }
+  .btn-cart, .btn-buy {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+  .product-tags {
+    gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+  }
+}
 </style>
