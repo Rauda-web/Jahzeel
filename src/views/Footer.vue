@@ -2,10 +2,10 @@
   <footer class="footer-container text-light">
     <div class="container py-5">
       <div class="row">
-        
+
         <!-- Columna de la Marca -->
         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-          <h5 class="text-uppercase footer-brand">SPORTSTYLE</h5>
+          <h5 class="text-uppercase footer-brand">SPORT·FLOW</h5>
           <p class="footer-tagline">
             Hechas para el movimiento. Diseñadas para ti.
           </p>
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <!-- Columna de Enlaces -->
+        <!-- Columna de Tienda -->
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
           <h5 class="text-uppercase footer-heading">Tienda</h5>
           <ul class="list-unstyled mb-0">
@@ -31,9 +31,21 @@
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
           <h5 class="text-uppercase footer-heading">Soporte</h5>
           <ul class="list-unstyled mb-0">
-            <li><a href="#" class="footer-link">Contacto</a></li>
+            <li><router-link to="/contact" class="footer-link">Contacto</router-link></li>
+            <li><router-link to="/location" class="footer-link">Ubicación</router-link></li>
             <li><a href="#" class="footer-link">Preguntas Frecuentes</a></li>
             <li><a href="#" class="footer-link">Guía de Tallas</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna de Contacto -->
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-uppercase footer-heading">Contáctanos</h5>
+          <ul class="list-unstyled mb-0 contact-list">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>Zócalo, CDMX, México</li>
+            <li><i class="bi bi-telephone-fill me-2"></i>+52 (55) 1234-5678</li>
+            <li><i class="bi bi-envelope-fill me-2"></i>hola@sportflow.mx</li>
+            <li><i class="bi bi-clock-fill me-2"></i>Lun–Sáb: 9am – 8pm</li>
           </ul>
         </div>
 
@@ -42,7 +54,7 @@
 
     <!-- Copyright -->
     <div class="copyright-bar text-center py-3">
-      &copy; {{ new Date().getFullYear() }} SPORTSTYLE. Todos los derechos reservados.
+      &copy; {{ new Date().getFullYear() }} SPORT·FLOW. Todos los derechos reservados.
     </div>
   </footer>
 </template>
@@ -53,26 +65,29 @@
 
 <style scoped>
 .footer-container {
-  background-color: var(--dark-color);
-  border-top: 3px solid var(--primary-color);
+  background-color: #111;
+  border-top: 3px solid #ff0077;
 }
 
 .footer-brand {
   font-weight: 900;
   letter-spacing: 2px;
-  color: var(--primary-color);
+  font-size: 1.4rem;
+  color: #ff0077;
 }
 
 .footer-tagline {
   color: #adb5bd;
   font-size: 0.9rem;
+  margin-top: 0.75rem;
 }
 
 .footer-heading {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.85rem;
   margin-bottom: 1rem;
   color: #fff;
+  letter-spacing: 1px;
 }
 
 .footer-link {
@@ -81,10 +96,11 @@
   transition: color 0.2s ease-in-out;
   display: inline-block;
   padding: 0.25rem 0;
+  font-size: 0.9rem;
 }
 
 .footer-link:hover {
-  color: #fff;
+  color: #ff0077;
 }
 
 .social-icons .social-icon {
@@ -95,13 +111,27 @@
 }
 
 .social-icons .social-icon:hover {
-  color: var(--primary-color);
-  transform: translateY(-2px);
+  color: #ff0077;
+  transform: translateY(-3px);
+}
+
+.contact-list li {
+  color: #adb5bd;
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.contact-list i {
+  color: #ff0077;
+  font-size: 0.9rem;
 }
 
 .copyright-bar {
-  background-color: #1a1a1a; /* Un poco más oscuro que el fondo principal del footer */
+  background-color: #0a0a0a;
   font-size: 0.8rem;
   color: #6c757d;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
-</style>
+</style>

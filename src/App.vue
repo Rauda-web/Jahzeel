@@ -7,11 +7,13 @@
       </transition>
     </router-view>
   </main>
+  <Footer v-if="!$route.meta.hideNavbar" />
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router'
 import Navbar from './components/Navbar.vue'
+import Footer from './views/Footer.vue'
 
 const route = useRoute()
 </script>
