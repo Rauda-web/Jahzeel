@@ -22,7 +22,7 @@
     </div>
 
     <!-- Categories Section -->
-    <div class="categories-section container text-center">
+    <div id="categories-section" class="categories-section container text-center">
       <h2 class="section-title">CATEGORÍAS</h2>
       <div class="row mt-5">
         <div class="col-md-4">
@@ -82,7 +82,7 @@ import { products } from '../products'
 import ProductCard from '../components/ProductCard.vue'
 
 const scrollToProducts = () => {
-  document.getElementById('products-grid').scrollIntoView({ behavior: 'smooth' })
+  document.getElementById('categories-section').scrollIntoView({ behavior: 'smooth' })
 }
 
 const heroImages = computed(() => products.map(p => p.image));
