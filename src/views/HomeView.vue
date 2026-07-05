@@ -107,13 +107,18 @@ onUnmounted(() => {
 .home-view {
   background-color: #f8f9fa;
   color: #333;
+  /* CORRECCIÓN: padding-top para compensar la navbar fixed-top */
+  padding-top: 80px;
 }
 
 /* Hero Section */
 .hero-section {
-  padding: 6rem 0;
+  padding: 5rem 0 6rem;
   background-color: #fff;
   overflow: hidden;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
 }
 
 .hero-title {
@@ -205,7 +210,7 @@ onUnmounted(() => {
 
 /* Categories Section */
 .categories-section {
-  padding: 6rem 0;
+  padding: 8rem 0 6rem;
 }
 
 .category-card {
