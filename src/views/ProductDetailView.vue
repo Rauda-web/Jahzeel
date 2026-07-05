@@ -32,7 +32,6 @@
                 <div class="size-grid">
                   <button v-for="size in availableSizes" :key="size" class="size-btn" :class="{ active: selectedSize === size }" @click="selectedSize = size">{{ size }}</button>
                 </div>
-                <div v-if="showGuide" class="guide-container"><SizeGuide /></div>
               </div>
               <div class="specs-block">
                 <h5 class="specs-title"><i class="bi bi-clipboard-check"></i> Especificaciones</h5>
@@ -67,6 +66,20 @@
     <i class="bi bi-emoji-frown"></i>
     <p>Producto no encontrado.</p>
   </div>
+
+  <!-- Modal Guía de Tallas: overlay fijo, no afecta el layout -->
+  <transition name="modal-fade">
+    <div v-if="showGuide" class="guide-modal-backdrop" @click.self="showGuide = false">
+      <div class="guide-modal">
+        <button class="guide-modal-close" @click="showGuide = false">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="guide-modal-body">
+          <SizeGuide />
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script setup>
@@ -217,4 +230,83 @@ const buyNow = () => {
 /* Not found */
 .not-found { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; color: #aaa; font-size: 1.2rem; }
 .not-found i { font-size: 4rem; margin-bottom: 1rem; }
+
+/* ========================================
+   MODAL GUÍA DE TALLAS
+   position: fixed → no afecta el layout
+======================================== */
+.guide-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.guide-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 80vh;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.guide-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #444;
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+
+.guide-modal-close:hover {
+  background: #ff0077;
+  color: #fff;
+}
+
+.guide-modal-body {
+  overflow-y: auto;
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+/* Transición del modal */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.modal-fade-enter-active .guide-modal,
+.modal-fade-leave-active .guide-modal {
+  transition: transform 0.25s ease;
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+.modal-fade-enter-from .guide-modal,
+.modal-fade-leave-to .guide-modal {
+  transform: scale(0.92) translateY(20px);
+}
 </style>
