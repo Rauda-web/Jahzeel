@@ -1,12 +1,12 @@
 <template>
   <div class="landing-page" ref="landingContainer">
-    <video class="video-background" autoplay loop muted playsinline>
-      <source src="https://videos.pexels.com/video-files/854361/854361-hd.mp4" type="video/mp4">
-      Tu navegador no soporta videos HTML5.
-    </video>
+    <!-- Fondo oscuro con tenis animados -->
+    <div class="sneakers-bg">
+      <span v-for="i in 18" :key="i" class="sneaker-float" :class="`sneaker-${i}`">👟</span>
+    </div>
     <div class="overlay"></div>
     <div class="content text-center" :style="contentStyle">
-      <h1 class="display-3 fw-bold text-uppercase">
+      <h1 class="display-3 fw-bold text-uppercase hero-title">
         <span class="word word-1">EL</span>
         <span class="word word-2">RITMO</span>
         <span class="word word-3">TE</span>
@@ -55,18 +55,92 @@ const contentStyle = computed(() => ({
 </script>
 
 <style scoped>
-.landing-page { height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; overflow: hidden; position: fixed; top: 0; left: 0; }
-.video-background { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: -2; }
-.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: -1; }
+/* ── Contenedor principal ── */
+.landing-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0a0a0a;
+}
 
+/* ── Overlay oscuro ── */
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.85) 100%);
+  z-index: 1;
+}
+
+/* ── Fondo de tenis flotantes ── */
+.sneakers-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sneaker-float {
+  position: absolute;
+  font-size: clamp(2rem, 5vw, 5rem);
+  opacity: 0.08;
+  filter: grayscale(80%) brightness(0.6);
+  animation: floatSneaker linear infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Posiciones y configuraciones únicas para cada tenis */
+.sneaker-1  { left:  5%; top: 10%; font-size: 3.5rem; animation-duration: 18s; animation-delay: 0s;    transform: rotate(-25deg); }
+.sneaker-2  { left: 20%; top: 70%; font-size: 2.8rem; animation-duration: 22s; animation-delay: -4s;   transform: rotate(15deg); }
+.sneaker-3  { left: 40%; top: 15%; font-size: 4rem;   animation-duration: 16s; animation-delay: -8s;   transform: rotate(-10deg); }
+.sneaker-4  { left: 65%; top: 80%; font-size: 3rem;   animation-duration: 24s; animation-delay: -2s;   transform: rotate(30deg); }
+.sneaker-5  { left: 80%; top: 20%; font-size: 4.5rem; animation-duration: 20s; animation-delay: -12s;  transform: rotate(-40deg); }
+.sneaker-6  { left: 92%; top: 55%; font-size: 2.5rem; animation-duration: 14s; animation-delay: -6s;   transform: rotate(20deg); }
+.sneaker-7  { left: 10%; top: 45%; font-size: 5rem;   animation-duration: 26s; animation-delay: -3s;   transform: rotate(-15deg); }
+.sneaker-8  { left: 55%; top: 40%; font-size: 2.2rem; animation-duration: 19s; animation-delay: -9s;   transform: rotate(45deg); }
+.sneaker-9  { left: 30%; top: 88%; font-size: 3.8rem; animation-duration: 21s; animation-delay: -1s;   transform: rotate(-35deg); }
+.sneaker-10 { left: 75%; top:  5%; font-size: 3.2rem; animation-duration: 17s; animation-delay: -7s;   transform: rotate(10deg); }
+.sneaker-11 { left: 48%; top: 60%; font-size: 4.2rem; animation-duration: 23s; animation-delay: -5s;   transform: rotate(-20deg); }
+.sneaker-12 { left: 85%; top: 75%; font-size: 2.9rem; animation-duration: 15s; animation-delay: -11s;  transform: rotate(50deg); }
+.sneaker-13 { left:  2%; top: 82%; font-size: 3.6rem; animation-duration: 20s; animation-delay: -14s;  transform: rotate(-30deg); }
+.sneaker-14 { left: 60%; top: 92%; font-size: 2.6rem; animation-duration: 25s; animation-delay: -2s;   transform: rotate(25deg); }
+.sneaker-15 { left: 15%; top: 28%; font-size: 4.8rem; animation-duration: 18s; animation-delay: -10s;  transform: rotate(-5deg); }
+.sneaker-16 { left: 72%; top: 38%; font-size: 2.4rem; animation-duration: 13s; animation-delay: -8s;   transform: rotate(60deg); }
+.sneaker-17 { left: 38%; top:  3%; font-size: 3.1rem; animation-duration: 22s; animation-delay: -6s;   transform: rotate(-45deg); }
+.sneaker-18 { left: 90%; top: 10%; font-size: 3.9rem; animation-duration: 16s; animation-delay: -13s;  transform: rotate(35deg); }
+
+@keyframes floatSneaker {
+  0%   { transform: translateY(0px)   rotate(var(--r, -20deg)) scale(1);    opacity: 0.06; }
+  25%  { transform: translateY(-30px) rotate(var(--r, -20deg)) scale(1.05); opacity: 0.11; }
+  50%  { transform: translateY(-15px) rotate(var(--r, -20deg)) scale(1);    opacity: 0.07; }
+  75%  { transform: translateY(-40px) rotate(var(--r, -20deg)) scale(1.08); opacity: 0.12; }
+  100% { transform: translateY(0px)   rotate(var(--r, -20deg)) scale(1);    opacity: 0.06; }
+}
+
+/* ── Contenido ── */
 .content {
   color: var(--light-color);
   transition: transform 0.1s linear;
+  position: relative;
+  z-index: 2;
 }
 
-.content h1 {
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
-  letter-spacing: 2px;
+/* ── Título con mayor espaciado entre palabras ── */
+.hero-title {
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  letter-spacing: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .word {
